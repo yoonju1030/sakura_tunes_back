@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restx import Api, Resource 
 from flask_cors import CORS
+from app.routes import routes_list
 
 app = Flask(__name__)
 api = Api(app) 
@@ -12,5 +13,6 @@ class HelloWorld(Resource):
         return {"hello": "world!"}
 
 if __name__ == "__main__":
+    routes_list(app)
     CORS(app, resources={r"*": {"origins": ["127.0.0.1:8081"]}}, supports_credentials=True)
     app.run(debug=True, host='0.0.0.0', port=80)
