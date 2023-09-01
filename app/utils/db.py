@@ -23,3 +23,10 @@ class DBUtils():
         except Exception as e:
             print(e)
 
+    def insert(self, sql, params):
+        try:
+            self.cursor.execute(sql, params);
+            self.connection.commit();
+        except Exception as e:
+            raise e
+

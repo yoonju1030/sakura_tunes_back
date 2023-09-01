@@ -23,3 +23,18 @@ class MusicService:
             return obj
         except Exception as e:
             raise e
+        
+    def insert_today_chart(self, charts):
+        try:
+            for chart in charts:
+                sql = """
+                    INSERT INTO chart (grade, diff, song, artist)
+                    VALUES (%s, %s, %s, %s)
+                """
+                params = (chart[0], chart[1], chart[2], chart[3])
+
+                row = self.db_utils.insert(sql, params)
+                print(f"{chart[0]} finish")    
+        except Exception as e:
+            raise e
+        
